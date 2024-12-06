@@ -86,55 +86,90 @@ public slots:
     inline void GetLoginUsernameSlot(void)
     {
         emit GetLoginUsernameSignal(StartMenu.username->text());
+        //this QEvent loop to process pending signals events, used with signal slots pairs
+        QEventLoop slot_loop;
+        slot_loop.processEvents();
     }
     inline void GetLoginPasswordSlot(void)
     {
         emit GetLoginPasswordSignal(StartMenu.password->text());
+        //this QEvent loop to process pending signals events, used with signal slots pairs
+        QEventLoop slot_loop;
+        slot_loop.processEvents();
     }
     inline void GetRegisterNameSlot(void)
     {
         emit GetRegisterNameSignal(StartMenu.RegisterName->text());
+        //this QEvent loop to process pending signals events, used with signal slots pairs
+        QEventLoop slot_loop;
+        slot_loop.processEvents();
     }
     inline void GetRegisterUsernameSlot(void)
     {
         emit GetRegisterUsernameSignal(StartMenu.RegisterUsername->text());
+        //this QEvent loop to process pending signals events, used with signal slots pairs
+        QEventLoop slot_loop;
+        slot_loop.processEvents();
     }
     inline void GetRegisterPasswordSlot(void)
     {
         emit GetRegisterPasswordSignal(StartMenu.RegisterPassword->text());
+        //this QEvent loop to process pending signals events, used with signal slots pairs
+        QEventLoop slot_loop;
+        slot_loop.processEvents();
     }
     inline void GetRegisterRePasswordSlot(void)
     {
         emit GetRegisterRePasswordSignal(StartMenu.RegisterReenterPassword->text());
+        //this QEvent loop to process pending signals events, used with signal slots pairs
+        QEventLoop slot_loop;
+        slot_loop.processEvents();
     }
     inline void GetRegisterEmailSlot(void)
     {
         emit GetRegisterEmailSignal(StartMenu.RegisterEmail->text());
+        //this QEvent loop to process pending signals events, used with signal slots pairs
+        QEventLoop slot_loop;
+        slot_loop.processEvents();
     }
     void GetRegisterGenderSlot(void)
     {
         int index = StartMenu.RegisterGenderSelect->currentIndex();
-        QString gender;
+        std::string gender;
         switch(index)
         {
             case 0:
                 gender =  "Not selected";
+                break;
             case 1:
                 gender = "Male";
+                break;
             case 2:
                 gender = "Female";
+                break;
             default:
                 gender = "";
+                break;
         }
-        emit GetRegisterGenderSignal(gender);
+        emit GetRegisterGenderSignal(QString::fromStdString(gender));   //cast std::string to QString
+        //this QEvent loop to process pending signals events, used with signal slots pairs
+        QEventLoop slot_loop;
+        slot_loop.processEvents();
     }
     inline void GetRegisterBirthdateSlot(void)
     {
         emit GetRegisterBirthdateSignal(StartMenu.RegisterBirthDate->date().toString());
+        //this QEvent loop to process pending signals events, used with signal slots pairs
+        QEventLoop slot_loop;
+        slot_loop.processEvents();
     }
     inline void GetForgotPasswordEmailSlot(void)
     {
         emit GetForgotPasswordEmailSignal(StartMenu.ForgotPasswordEmail->text());
+        cout << "entered email: " << StartMenu.ForgotPasswordEmail->text().toStdString() << endl;
+        //this QEvent loop to process pending signals events, used with signal slots pairs
+        QEventLoop slot_loop;
+        slot_loop.processEvents();
     }
 signals:
     void LoginPressedSignal(void);

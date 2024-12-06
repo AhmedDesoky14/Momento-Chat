@@ -19,6 +19,7 @@ int main(int argc, char *argv[])
     QObject::connect(&AppThread,&QThread::started,app_instance,&app_main::appmain_start);
     QObject::connect(&app,&QApplication::aboutToQuit,[&]()
                     {
+        cout << "Lambda about to quit-> " << QThread::currentThread()->objectName().toStdString() << endl;
                         app_instance->appmain_exit();    //if main window closed, exit all backend operationss
                         AppThread.quit();
                         AppThread.wait();

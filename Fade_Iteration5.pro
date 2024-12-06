@@ -15,7 +15,7 @@ SOURCES += \
     serverconnection.cpp \
     services.cpp \
     startmenu.cpp \
-    startmenu_ui.cpp
+    startmenu_corr.cpp
 
 HEADERS += \
     app_main.h \

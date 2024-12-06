@@ -11,7 +11,7 @@ private:
     std::string password2_temp;
 protected:
     user_hostmachine hostmachine;
-    std::pair<std::string,unsigned long long> user_entity = {"",0};
+    std::string username;
     std::string name;
     std::string email;
     std::string gender;
@@ -25,8 +25,7 @@ public:
     {
         password1_temp.clear();
         password2_temp.clear();
-        user_entity.first.clear();
-        user_entity.second = 0;
+        username.clear();
         name.clear();
         email.clear();
         gender.clear();
@@ -51,16 +50,16 @@ public:
     }
     inline void SetUsername(std::string usrnm)
     {
-        user_entity.first = usrnm;
+        username = usrnm;
     }
     inline std::string GetUsername(void)
     {
-        return user_entity.first;
+        return username;
     }
-    inline void SetUserID(unsigned long long ID)
-    {
-        user_entity.second = ID;
-    }
+    // inline void SetUserID(unsigned long long ID)
+    // {
+    //     user_entity.second = ID;
+    // }
     inline bool CheckUserLocked(void)
     {
         return usr_locked;

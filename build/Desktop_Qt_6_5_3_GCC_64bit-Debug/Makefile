@@ -58,7 +58,7 @@ SOURCES       = ../../app_main.cpp \
 		../../serverconnection.cpp \
 		../../services.cpp \
 		../../startmenu.cpp \
-		../../startmenu_ui.cpp qrc_icons.cpp \
+		../../startmenu_corr.cpp qrc_icons.cpp \
 		qrc_images.cpp \
 		moc_app_main.cpp \
 		moc_loadingscreen.cpp \
@@ -71,7 +71,7 @@ OBJECTS       = app_main.o \
 		serverconnection.o \
 		services.o \
 		startmenu.o \
-		startmenu_ui.o \
+		startmenu_corr.o \
 		qrc_icons.o \
 		qrc_images.o \
 		moc_app_main.o \
@@ -253,7 +253,7 @@ DIST          = /opt/Qt/6.5.3/gcc_64/mkspecs/features/spec_pre.prf \
 		../../serverconnection.cpp \
 		../../services.cpp \
 		../../startmenu.cpp \
-		../../startmenu_ui.cpp
+		../../startmenu_corr.cpp
 QMAKE_TARGET  = Fade_Iteration5
 DESTDIR       = 
 TARGET        = Fade_Iteration5
@@ -605,7 +605,7 @@ distdir: FORCE
 	$(COPY_FILE) --parents ../../../../UserInterface/UI_Resources/icons.qrc ../../../../UserInterface/UI_Resources/images.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /opt/Qt/6.5.3/gcc_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../../app_main.h ../../conf.h ../../loadingscreen.h ../../loadingscreen_ui.h ../../loadingscreen_window.h ../../platform.h ../../requests.h ../../serverconnection.h ../../services.h ../../startmenu.h ../../startmenu_ui.h ../../startmenu_window.h ../../user.h ../../user_hostmachine.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../../app_main.cpp ../../loadingscreen.cpp ../../main.cpp ../../serverconnection.cpp ../../services.cpp ../../startmenu.cpp ../../startmenu_ui.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../../app_main.cpp ../../loadingscreen.cpp ../../main.cpp ../../serverconnection.cpp ../../services.cpp ../../startmenu.cpp ../../startmenu_corr.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../../loadingscreen_window.ui ../../startmenu_window.ui $(DISTDIR)/
 
 
@@ -756,6 +756,9 @@ moc_app_main.cpp: ../../app_main.h \
 		/opt/Qt/6.5.3/gcc_64/include/QtCore/qscopeguard.h \
 		/opt/Qt/6.5.3/gcc_64/include/QtCore/qobject_impl.h \
 		/opt/Qt/6.5.3/gcc_64/include/QtCore/qbindingstorage.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/QMutex \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qmutex.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qtsan_impl.h \
 		../../loadingscreen.h \
 		/opt/Qt/6.5.3/gcc_64/include/QtCore/QString \
 		../../loadingscreen_ui.h \
@@ -835,8 +838,6 @@ moc_app_main.cpp: ../../app_main.h \
 		/opt/Qt/6.5.3/gcc_64/include/QtCore/qcoreapplication_platform.h \
 		/opt/Qt/6.5.3/gcc_64/include/QtCore/qfuture.h \
 		/opt/Qt/6.5.3/gcc_64/include/QtCore/qfutureinterface.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qmutex.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qtsan_impl.h \
 		/opt/Qt/6.5.3/gcc_64/include/QtCore/qresultstore.h \
 		/opt/Qt/6.5.3/gcc_64/include/QtCore/qfuture_impl.h \
 		/opt/Qt/6.5.3/gcc_64/include/QtCore/qthreadpool.h \
@@ -867,6 +868,44 @@ moc_app_main.cpp: ../../app_main.h \
 		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/qabstractbutton.h \
 		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/QVBoxLayout \
 		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/QWidget \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/QThread \
+		../../startmenu.h \
+		../../startmenu_ui.h \
+		../../startmenu_window.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/QDate \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qdatetime.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qcalendar.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtGui/QIcon \
+		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/QComboBox \
+		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/qcombobox.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/qstyleoption.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/qabstractspinbox.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtGui/qvalidator.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qregularexpression.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/qslider.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/qabstractslider.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/qstyle.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/qtabbar.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/qrubberband.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qabstractitemmodel.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/QDateEdit \
+		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/qdatetimeedit.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/QHBoxLayout \
+		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/QLineEdit \
+		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/qlineedit.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtGui/qtextcursor.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtGui/qtextformat.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtGui/qpen.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtGui/qtextoption.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/QTabWidget \
+		../../services.h \
+		../../user.h \
+		../../user_hostmachine.h \
+		../../serverconnection.h \
+		../../conf.h \
+		../../platform.h \
+		../../requests.h \
 		moc_predefs.h \
 		/opt/Qt/6.5.3/gcc_64/libexec/moc
 	/opt/Qt/6.5.3/gcc_64/libexec/moc $(DEFINES) --include /home/desoky/Fade_Project/C++_Projects/Fade_Iteration5/build/Desktop_Qt_6_5_3_GCC_64bit-Debug/moc_predefs.h -I/opt/Qt/6.5.3/gcc_64/mkspecs/linux-g++ -I/home/desoky/Fade_Project/C++_Projects/Fade_Iteration5 -I/opt/Qt/6.5.3/gcc_64/include -I/opt/Qt/6.5.3/gcc_64/include/QtWidgets -I/opt/Qt/6.5.3/gcc_64/include/QtGui -I/opt/Qt/6.5.3/gcc_64/include/QtCore -I. -I/usr/include/c++/11 -I/usr/include/x86_64-linux-gnu/c++/11 -I/usr/include/c++/11/backward -I/usr/lib/gcc/x86_64-linux-gnu/11/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../../app_main.h -o moc_app_main.cpp
@@ -1073,6 +1112,7 @@ moc_loadingscreen.cpp: ../../loadingscreen.h \
 		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/qabstractbutton.h \
 		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/QVBoxLayout \
 		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/QWidget \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/QThread \
 		moc_predefs.h \
 		/opt/Qt/6.5.3/gcc_64/libexec/moc
 	/opt/Qt/6.5.3/gcc_64/libexec/moc $(DEFINES) --include /home/desoky/Fade_Project/C++_Projects/Fade_Iteration5/build/Desktop_Qt_6_5_3_GCC_64bit-Debug/moc_predefs.h -I/opt/Qt/6.5.3/gcc_64/mkspecs/linux-g++ -I/home/desoky/Fade_Project/C++_Projects/Fade_Iteration5 -I/opt/Qt/6.5.3/gcc_64/include -I/opt/Qt/6.5.3/gcc_64/include/QtWidgets -I/opt/Qt/6.5.3/gcc_64/include/QtGui -I/opt/Qt/6.5.3/gcc_64/include/QtCore -I. -I/usr/include/c++/11 -I/usr/include/x86_64-linux-gnu/c++/11 -I/usr/include/c++/11/backward -I/usr/lib/gcc/x86_64-linux-gnu/11/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../../loadingscreen.h -o moc_loadingscreen.cpp
@@ -1278,6 +1318,7 @@ moc_loadingscreen_ui.cpp: ../../loadingscreen_ui.h \
 		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/qabstractbutton.h \
 		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/QVBoxLayout \
 		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/QWidget \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/QThread \
 		moc_predefs.h \
 		/opt/Qt/6.5.3/gcc_64/libexec/moc
 	/opt/Qt/6.5.3/gcc_64/libexec/moc $(DEFINES) --include /home/desoky/Fade_Project/C++_Projects/Fade_Iteration5/build/Desktop_Qt_6_5_3_GCC_64bit-Debug/moc_predefs.h -I/opt/Qt/6.5.3/gcc_64/mkspecs/linux-g++ -I/home/desoky/Fade_Project/C++_Projects/Fade_Iteration5 -I/opt/Qt/6.5.3/gcc_64/include -I/opt/Qt/6.5.3/gcc_64/include/QtWidgets -I/opt/Qt/6.5.3/gcc_64/include/QtGui -I/opt/Qt/6.5.3/gcc_64/include/QtCore -I. -I/usr/include/c++/11 -I/usr/include/x86_64-linux-gnu/c++/11 -I/usr/include/c++/11/backward -I/usr/lib/gcc/x86_64-linux-gnu/11/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../../loadingscreen_ui.h -o moc_loadingscreen_ui.cpp
@@ -1509,11 +1550,14 @@ moc_startmenu.cpp: ../../startmenu.h \
 		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/QTabWidget \
 		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/QVBoxLayout \
 		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/QWidget \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/QThread \
+		../../services.h \
 		../../user.h \
 		../../user_hostmachine.h \
 		../../serverconnection.h \
 		../../conf.h \
 		../../platform.h \
+		../../requests.h \
 		moc_predefs.h \
 		/opt/Qt/6.5.3/gcc_64/libexec/moc
 	/opt/Qt/6.5.3/gcc_64/libexec/moc $(DEFINES) --include /home/desoky/Fade_Project/C++_Projects/Fade_Iteration5/build/Desktop_Qt_6_5_3_GCC_64bit-Debug/moc_predefs.h -I/opt/Qt/6.5.3/gcc_64/mkspecs/linux-g++ -I/home/desoky/Fade_Project/C++_Projects/Fade_Iteration5 -I/opt/Qt/6.5.3/gcc_64/include -I/opt/Qt/6.5.3/gcc_64/include/QtWidgets -I/opt/Qt/6.5.3/gcc_64/include/QtGui -I/opt/Qt/6.5.3/gcc_64/include/QtCore -I. -I/usr/include/c++/11 -I/usr/include/x86_64-linux-gnu/c++/11 -I/usr/include/c++/11/backward -I/usr/lib/gcc/x86_64-linux-gnu/11/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../../startmenu.h -o moc_startmenu.cpp
@@ -1744,6 +1788,7 @@ moc_startmenu_ui.cpp: ../../startmenu_ui.h \
 		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/QTabWidget \
 		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/QVBoxLayout \
 		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/QWidget \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/QThread \
 		moc_predefs.h \
 		/opt/Qt/6.5.3/gcc_64/libexec/moc
 	/opt/Qt/6.5.3/gcc_64/libexec/moc $(DEFINES) --include /home/desoky/Fade_Project/C++_Projects/Fade_Iteration5/build/Desktop_Qt_6_5_3_GCC_64bit-Debug/moc_predefs.h -I/opt/Qt/6.5.3/gcc_64/mkspecs/linux-g++ -I/home/desoky/Fade_Project/C++_Projects/Fade_Iteration5 -I/opt/Qt/6.5.3/gcc_64/include -I/opt/Qt/6.5.3/gcc_64/include/QtWidgets -I/opt/Qt/6.5.3/gcc_64/include/QtGui -I/opt/Qt/6.5.3/gcc_64/include/QtCore -I. -I/usr/include/c++/11 -I/usr/include/x86_64-linux-gnu/c++/11 -I/usr/include/c++/11/backward -I/usr/lib/gcc/x86_64-linux-gnu/11/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../../startmenu_ui.h -o moc_startmenu_ui.cpp
@@ -1865,6 +1910,9 @@ app_main.o: ../../app_main.cpp ../../app_main.h \
 		/opt/Qt/6.5.3/gcc_64/include/QtCore/qscopeguard.h \
 		/opt/Qt/6.5.3/gcc_64/include/QtCore/qobject_impl.h \
 		/opt/Qt/6.5.3/gcc_64/include/QtCore/qbindingstorage.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/QMutex \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qmutex.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qtsan_impl.h \
 		../../loadingscreen.h \
 		/opt/Qt/6.5.3/gcc_64/include/QtCore/QString \
 		../../loadingscreen_ui.h \
@@ -1944,8 +1992,6 @@ app_main.o: ../../app_main.cpp ../../app_main.h \
 		/opt/Qt/6.5.3/gcc_64/include/QtCore/qcoreapplication_platform.h \
 		/opt/Qt/6.5.3/gcc_64/include/QtCore/qfuture.h \
 		/opt/Qt/6.5.3/gcc_64/include/QtCore/qfutureinterface.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qmutex.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qtsan_impl.h \
 		/opt/Qt/6.5.3/gcc_64/include/QtCore/qresultstore.h \
 		/opt/Qt/6.5.3/gcc_64/include/QtCore/qfuture_impl.h \
 		/opt/Qt/6.5.3/gcc_64/include/QtCore/qthreadpool.h \
@@ -1975,7 +2021,45 @@ app_main.o: ../../app_main.cpp ../../app_main.h \
 		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/qpushbutton.h \
 		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/qabstractbutton.h \
 		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/QVBoxLayout \
-		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/QWidget
+		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/QWidget \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/QThread \
+		../../startmenu.h \
+		../../startmenu_ui.h \
+		../../startmenu_window.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/QDate \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qdatetime.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qcalendar.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtGui/QIcon \
+		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/QComboBox \
+		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/qcombobox.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/qstyleoption.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/qabstractspinbox.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtGui/qvalidator.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qregularexpression.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/qslider.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/qabstractslider.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/qstyle.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/qtabbar.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/qrubberband.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qabstractitemmodel.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/QDateEdit \
+		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/qdatetimeedit.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/QHBoxLayout \
+		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/QLineEdit \
+		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/qlineedit.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtGui/qtextcursor.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtGui/qtextformat.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtGui/qpen.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtGui/qtextoption.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/QTabWidget \
+		../../services.h \
+		../../user.h \
+		../../user_hostmachine.h \
+		../../serverconnection.h \
+		../../conf.h \
+		../../platform.h \
+		../../requests.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o app_main.o ../../app_main.cpp
 
 loadingscreen.o: ../../loadingscreen.cpp ../../loadingscreen.h \
@@ -2180,6 +2264,7 @@ loadingscreen.o: ../../loadingscreen.cpp ../../loadingscreen.h \
 		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/qabstractbutton.h \
 		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/QVBoxLayout \
 		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/QWidget \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/QThread \
 		../../serverconnection.h \
 		../../conf.h \
 		../../platform.h
@@ -2342,6 +2427,7 @@ main.o: ../../main.cpp /opt/Qt/6.5.3/gcc_64/include/QtWidgets/QApplication \
 		../../platform.h \
 		../../app_main.h \
 		/opt/Qt/6.5.3/gcc_64/include/QtCore/QObject \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/QMutex \
 		../../loadingscreen.h \
 		/opt/Qt/6.5.3/gcc_64/include/QtCore/QString \
 		../../loadingscreen_ui.h \
@@ -2391,7 +2477,41 @@ main.o: ../../main.cpp /opt/Qt/6.5.3/gcc_64/include/QtWidgets/QApplication \
 		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/qabstractbutton.h \
 		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/QVBoxLayout \
 		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/QWidget \
-		../../serverconnection.h
+		../../startmenu.h \
+		../../startmenu_ui.h \
+		../../startmenu_window.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/QDate \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qdatetime.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qcalendar.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtGui/QIcon \
+		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/QComboBox \
+		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/qcombobox.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/qstyleoption.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/qabstractspinbox.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtGui/qvalidator.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qregularexpression.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/qslider.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/qabstractslider.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/qstyle.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/qtabbar.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/qrubberband.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qabstractitemmodel.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/QDateEdit \
+		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/qdatetimeedit.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/QHBoxLayout \
+		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/QLineEdit \
+		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/qlineedit.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtGui/qtextcursor.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtGui/qtextformat.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtGui/qpen.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtGui/qtextoption.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/QTabWidget \
+		../../services.h \
+		../../user.h \
+		../../user_hostmachine.h \
+		../../serverconnection.h \
+		../../requests.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../../main.cpp
 
 serverconnection.o: ../../serverconnection.cpp ../../serverconnection.h \
@@ -2487,10 +2607,110 @@ serverconnection.o: ../../serverconnection.cpp ../../serverconnection.h \
 		/opt/Qt/6.5.3/gcc_64/include/QtCore/qobject_impl.h \
 		/opt/Qt/6.5.3/gcc_64/include/QtCore/qbindingstorage.h \
 		../../conf.h \
-		../../platform.h
+		../../platform.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/QThread \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qthread.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qdeadlinetimer.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qelapsedtimer.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o serverconnection.o ../../serverconnection.cpp
 
 services.o: ../../services.cpp ../../services.h \
+		../../user.h \
+		../../user_hostmachine.h \
+		../../serverconnection.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/QObject \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qobject.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qobjectdefs.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qnamespace.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qglobal.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qtversionchecks.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qconfig.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qtcore-config.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qtconfigmacros.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qtcoreexports.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qtpreprocessorsupport.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qtnoop.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qsystemdetection.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qprocessordetection.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qcompilerdetection.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qassert.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qtypes.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qtclasshelpermacros.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qtversion.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qtypeinfo.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qcontainerfwd.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qsysinfo.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qlogging.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qflags.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qcompare_impl.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qatomic.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qbasicatomic.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qatomic_cxx11.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qgenericatomic.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qconstructormacros.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qdarwinhelpers.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qexceptionhandling.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qforeach.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qtdeprecationmarkers.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qttypetraits.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qfunctionpointer.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qglobalstatic.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qmalloc.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qminmax.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qnumeric.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qoverload.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qswap.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qtenvironmentvariables.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qtresource.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qttranslation.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qversiontagging.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qtmetamacros.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qstring.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qchar.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qstringview.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qbytearray.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qrefcount.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qarraydata.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qpair.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qarraydatapointer.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qarraydataops.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qcontainertools_impl.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qxptype_traits.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qbytearrayalgorithms.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qbytearrayview.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qstringfwd.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/q20type_traits.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qstringliteral.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qstringalgorithms.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qanystringview.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qutf8stringview.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qstringtokenizer.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qstringbuilder.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qlist.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qhashfunctions.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qiterator.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qbytearraylist.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qstringlist.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qalgorithms.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qstringmatcher.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qcoreevent.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qscopedpointer.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qmetatype.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qcompare.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qdatastream.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qiodevicebase.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qfloat16.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qmath.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qiterable.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qmetacontainer.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qcontainerinfo.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qtaggedpointer.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qscopeguard.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qobject_impl.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qbindingstorage.h \
+		../../conf.h \
+		../../platform.h \
 		../../requests.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o services.o ../../services.cpp
 
@@ -2721,240 +2941,18 @@ startmenu.o: ../../startmenu.cpp ../../startmenu.h \
 		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/QTabWidget \
 		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/QVBoxLayout \
 		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/QWidget \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/QThread \
+		../../services.h \
 		../../user.h \
 		../../user_hostmachine.h \
 		../../serverconnection.h \
 		../../conf.h \
-		../../platform.h
+		../../platform.h \
+		../../requests.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o startmenu.o ../../startmenu.cpp
 
-startmenu_ui.o: ../../startmenu_ui.cpp ../../startmenu_ui.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/QMainWindow \
-		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/qmainwindow.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtGui/qtguiglobal.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qglobal.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qtversionchecks.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qconfig.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qtcore-config.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qtconfigmacros.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qtcoreexports.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qtpreprocessorsupport.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qtnoop.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qsystemdetection.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qprocessordetection.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qcompilerdetection.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qassert.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qtypes.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qtclasshelpermacros.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qtversion.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qtypeinfo.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qcontainerfwd.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qsysinfo.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qlogging.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qflags.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qcompare_impl.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qatomic.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qbasicatomic.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qatomic_cxx11.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qgenericatomic.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qconstructormacros.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qdarwinhelpers.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qexceptionhandling.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qforeach.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qtdeprecationmarkers.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qttypetraits.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qfunctionpointer.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qglobalstatic.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qmalloc.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qminmax.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qnumeric.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qoverload.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qswap.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qtenvironmentvariables.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qtresource.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qttranslation.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qversiontagging.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtGui/qtgui-config.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtGui/qtguiexports.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/qtwidgets-config.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/qtwidgetsexports.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/qwidget.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtGui/qwindowdefs.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qobjectdefs.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qnamespace.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qtmetamacros.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qobjectdefs_impl.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qobject.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qstring.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qchar.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qstringview.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qbytearray.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qrefcount.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qarraydata.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qpair.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qarraydatapointer.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qarraydataops.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qcontainertools_impl.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qxptype_traits.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qbytearrayalgorithms.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qbytearrayview.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qstringfwd.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/q20type_traits.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qstringliteral.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qstringalgorithms.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qanystringview.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qutf8stringview.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qstringtokenizer.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qstringbuilder.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qlist.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qhashfunctions.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qiterator.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qbytearraylist.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qstringlist.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qalgorithms.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qstringmatcher.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qcoreevent.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qscopedpointer.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qmetatype.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qcompare.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qdatastream.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qiodevicebase.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qfloat16.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qmath.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qiterable.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qmetacontainer.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qcontainerinfo.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qtaggedpointer.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qscopeguard.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qobject_impl.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qbindingstorage.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qmargins.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtGui/qaction.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtGui/qkeysequence.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtGui/qicon.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qsize.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtGui/qpixmap.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtGui/qpaintdevice.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qrect.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qpoint.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtGui/qcolor.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtGui/qrgb.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtGui/qrgba64.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qsharedpointer.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qshareddata.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qsharedpointer_impl.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtGui/qimage.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtGui/qpixelformat.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtGui/qtransform.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtGui/qpolygon.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtGui/qregion.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qline.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qvariant.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qdebug.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qtextstream.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qstringconverter_base.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qcontiguouscache.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qmap.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qshareddata_impl.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qset.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qhash.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qvarlengtharray.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/q20memory.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtGui/qpalette.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtGui/qbrush.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtGui/qfont.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtGui/qfontmetrics.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtGui/qfontinfo.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/qsizepolicy.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtGui/qcursor.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtGui/qbitmap.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtGui/qevent.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qiodevice.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qpointer.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qurl.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtGui/qeventpoint.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtGui/qvector2d.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtGui/qvectornd.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtGui/qpointingdevice.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtGui/qinputdevice.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtGui/qscreen.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/QList \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/QObject \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/QRect \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/QSize \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/QSizeF \
-		/opt/Qt/6.5.3/gcc_64/include/QtGui/QTransform \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qnativeinterface.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/qtabwidget.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/QString \
-		../../startmenu_window.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/QDate \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qdatetime.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qcalendar.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qlocale.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/QVariant \
-		/opt/Qt/6.5.3/gcc_64/include/QtGui/QIcon \
-		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/QApplication \
-		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/qapplication.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qcoreapplication.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qeventloop.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qcoreapplication_platform.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qfuture.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qfutureinterface.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qmutex.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qtsan_impl.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qresultstore.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qfuture_impl.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qthreadpool.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qthread.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qdeadlinetimer.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qelapsedtimer.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qrunnable.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qexception.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qpromise.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtGui/qguiapplication.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtGui/qinputmethod.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtGui/qguiapplication_platform.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/QComboBox \
-		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/qcombobox.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/qstyleoption.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/qabstractspinbox.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtGui/qvalidator.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qregularexpression.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/qslider.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/qabstractslider.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/qstyle.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/qtabbar.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/qrubberband.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/qframe.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtCore/qabstractitemmodel.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/QDateEdit \
-		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/qdatetimeedit.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/QGridLayout \
-		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/qgridlayout.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/qlayout.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/qlayoutitem.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/qboxlayout.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/QHBoxLayout \
-		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/QLabel \
-		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/qlabel.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtGui/qpicture.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtGui/qtextdocument.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/QLineEdit \
-		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/qlineedit.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtGui/qtextcursor.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtGui/qtextformat.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtGui/qpen.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtGui/qtextoption.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/QPushButton \
-		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/qpushbutton.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/qabstractbutton.h \
-		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/QTabWidget \
-		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/QVBoxLayout \
-		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/QWidget
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o startmenu_ui.o ../../startmenu_ui.cpp
+startmenu_corr.o: ../../startmenu_corr.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o startmenu_corr.o ../../startmenu_corr.cpp
 
 qrc_icons.o: qrc_icons.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_icons.o qrc_icons.cpp

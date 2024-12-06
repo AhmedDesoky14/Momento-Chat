@@ -21,7 +21,7 @@
 
 QT_BEGIN_NAMESPACE
 
-class Ui_MainWindow
+class Ui_FadeChatLoading
 {
 public:
     QWidget *centralwidget;
@@ -32,15 +32,15 @@ public:
     QLabel *LoadingText;
     QProgressBar *LoadingBar;
 
-    void setupUi(QMainWindow *MainWindow)
+    void setupUi(QMainWindow *FadeChatLoading)
     {
-        if (MainWindow->objectName().isEmpty())
-            MainWindow->setObjectName("MainWindow");
-        MainWindow->resize(370, 400);
-        MainWindow->setMinimumSize(QSize(370, 400));
-        MainWindow->setMaximumSize(QSize(370, 400));
-        MainWindow->setStyleSheet(QString::fromUtf8("background-color: rgb(192, 191, 188);"));
-        centralwidget = new QWidget(MainWindow);
+        if (FadeChatLoading->objectName().isEmpty())
+            FadeChatLoading->setObjectName("FadeChatLoading");
+        FadeChatLoading->resize(370, 400);
+        FadeChatLoading->setMinimumSize(QSize(370, 400));
+        FadeChatLoading->setMaximumSize(QSize(370, 400));
+        FadeChatLoading->setStyleSheet(QString::fromUtf8("background-color: rgb(192, 191, 188);"));
+        centralwidget = new QWidget(FadeChatLoading);
         centralwidget->setObjectName("centralwidget");
         gridLayout_3 = new QGridLayout(centralwidget);
         gridLayout_3->setObjectName("gridLayout_3");
@@ -84,25 +84,25 @@ public:
 
         gridLayout_3->addLayout(verticalLayout_8, 0, 0, 1, 1);
 
-        MainWindow->setCentralWidget(centralwidget);
+        FadeChatLoading->setCentralWidget(centralwidget);
 
-        retranslateUi(MainWindow);
+        retranslateUi(FadeChatLoading);
 
-        QMetaObject::connectSlotsByName(MainWindow);
+        QMetaObject::connectSlotsByName(FadeChatLoading);
     } // setupUi
 
-    void retranslateUi(QMainWindow *MainWindow)
+    void retranslateUi(QMainWindow *FadeChatLoading)
     {
-        MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
-        AppName->setText(QCoreApplication::translate("MainWindow", "Fade Chat", nullptr));
+        FadeChatLoading->setWindowTitle(QCoreApplication::translate("FadeChatLoading", "MainWindow", nullptr));
+        AppName->setText(QCoreApplication::translate("FadeChatLoading", "Fade Chat", nullptr));
         AppLogo->setText(QString());
-        LoadingText->setText(QCoreApplication::translate("MainWindow", "Loading...", nullptr));
+        LoadingText->setText(QCoreApplication::translate("FadeChatLoading", "Loading...", nullptr));
     } // retranslateUi
 
 };
 
 namespace Ui {
-    class MainWindow: public Ui_MainWindow {};
+    class FadeChatLoading: public Ui_FadeChatLoading {};
 } // namespace Ui
 
 QT_END_NAMESPACE

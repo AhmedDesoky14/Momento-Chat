@@ -1,4 +1,5 @@
 #pragma once
+#include <string>
 #include <QObject>
 #include <QString>
 #include "startmenu_ui.h"
@@ -10,7 +11,7 @@ class startmenu : public QObject
     Q_OBJECT
 private:
     user start_user;
-
+    user_services start_client;
     startmenu(void);
 
 
@@ -19,6 +20,8 @@ private:
 public:
     bool startmenu_running = false;
     startmenu_ui& UI = startmenu_ui::MakeInstance();
+
+
     startmenu(const startmenu&) = delete; //delete copy constructor
     startmenu& operator=(const startmenu&) = delete;  //delete copy assignment operator
     inline static startmenu& MakeInstance(void) //static function to get the single instance of the class
@@ -26,8 +29,14 @@ public:
         static startmenu instance;   //static single instance of the class //Lazy initialization
         return instance;
     }
-    void StartMenuShow(void);
-    void StartMenuClose(void);
+    inline void StartMenuShow(void)
+    {
+        emit ShowWindow();
+    }
+    inline void StartMenuClose(void)
+    {
+        emit CloseWindow();
+    }
 public slots:
     void LoginPressed(void);
     void RegisterPressed(void);
@@ -45,6 +54,7 @@ public slots:
     void GetForgotPasswordEmailCallback(QString);
 signals:
     void SuccessfullLogin(void);
+
     void ShowWindow(void);
     void CloseWindow(void);
     void SetLoginStatus(QString,QString);
