@@ -17,11 +17,8 @@ protected:
     std::string gender;
     std::string birthdate;
 public:
-    user(void)
-    {
-
-    }
-    void clear(void)
+    user(void) = default;
+    virtual void clear(void)
     {
         password1_temp.clear();
         password2_temp.clear();
@@ -30,7 +27,6 @@ public:
         email.clear();
         gender.clear();
         birthdate.clear();
-
     }
     inline std::string GetServerIP(void)
     {
@@ -56,10 +52,6 @@ public:
     {
         return username;
     }
-    // inline void SetUserID(unsigned long long ID)
-    // {
-    //     user_entity.second = ID;
-    // }
     inline bool CheckUserLocked(void)
     {
         return usr_locked;

@@ -38,6 +38,12 @@ private slots:
     {
         StartMenu.MainTabs->setCurrentIndex(1);
     }
+    /*
+     * button signals are connected to these private slots that emit another signals
+     * that are connected in the startmenu class with another slots to do the button clicked
+     * functionaility. Because:
+     * the startmenu class is invisible to this class, but startmenu class has startmenu_ui object
+     */
     inline void TriggerLoginPressed(void)
     {
         emit LoginPressedSignal();

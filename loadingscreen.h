@@ -23,6 +23,14 @@ public:
         static loadingscreen instance;   //static single instance of the class //Lazy initialization
         return instance;
     }
+    inline void Loading_ShowWindow(void)
+    {
+        emit ShowWindow();
+    }
+    inline void Loading_CloseWindow(void)
+    {
+        emit CloseWindow();
+    }
     int AppLoad(void);
     static int AppOff(void);
 signals:

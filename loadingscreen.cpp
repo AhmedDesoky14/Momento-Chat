@@ -32,7 +32,7 @@ int loadingscreen::AppLoad(void)
     int ProgressBar_value = 0;
     int ConnectTask_result;
     bool finished_task = false; //boolean to check whether task is finished or not
-    emit ShowWindow();
+    Loading_ShowWindow();
     std::future<int> ConnectTask = ServerConnection::Connect();
     while(!finished_task)
     {
@@ -49,7 +49,7 @@ int loadingscreen::AppLoad(void)
         emit SetLoadingBar(ProgressBar_value); //set loading bar to 100%
         emit SetLoadingText("Connection Failed, Please check internet connection","color: rgb(192, 28, 40);");
         std::this_thread::sleep_for(3s);    //sleep for 3 seconds
-        emit CloseWindow();
+        Loading_CloseWindow();
         return -1;
     }
     else    //if task finshed
@@ -61,7 +61,7 @@ int loadingscreen::AppLoad(void)
             emit SetLoadingBar(ProgressBar_value); //set loading bar to 100%
             emit SetLoadingText("Connection Failed, Please check internet connection","color: rgb(192, 28, 40);");
             std::this_thread::sleep_for(3s);    //sleep for 3 seconds
-            emit CloseWindow();
+            Loading_CloseWindow();
             return -1;
         }
         else //if task finshed successfully
@@ -73,7 +73,7 @@ int loadingscreen::AppLoad(void)
                 emit SetLoadingBar(ProgressBar_value); //set loading bar to 100%
                 emit SetLoadingText("Connection Failed, Please check internet connection","color: rgb(192, 28, 40);");
                 std::this_thread::sleep_for(3s);    //sleep for 3 seconds
-                emit CloseWindow();
+                Loading_CloseWindow();
                 return -1;
             }
             Server = ServerConnection::GetServerIPAddress();
@@ -81,14 +81,14 @@ int loadingscreen::AppLoad(void)
             {
                 emit SetLoadingText("Connection Failed, Please check internet connection","color: rgb(192, 28, 40);");
                 std::this_thread::sleep_for(3s);    //sleep for 3 seconds
-                emit CloseWindow();
+                Loading_CloseWindow();
                 return -1;
             }
             emit SetLoadingText("Connected","color: rgb(38, 162, 105);");
             ProgressBar_value = 100;
             emit SetLoadingBar(ProgressBar_value); //set loading bar to 100%
             std::this_thread::sleep_for(2s);    //sleep for 2s
-            emit CloseWindow();
+            Loading_CloseWindow();
             return 0;
         }
     }

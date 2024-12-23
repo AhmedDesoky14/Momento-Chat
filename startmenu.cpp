@@ -1,5 +1,11 @@
 #include "startmenu.h"
 
+#include <thread>
+
+
+
+
+using namespace std::chrono_literals;
 
 #include <iostream>
 
@@ -7,7 +13,6 @@ using namespace std;
 
 startmenu::startmenu(void)
 {
-
     //connect login, register and forgot password slots with its signal in the UI
     connect(&UI,&startmenu_ui::LoginPressedSignal,this,&startmenu::LoginPressed,Qt::QueuedConnection);
     connect(&UI,&startmenu_ui::RegisterPressedSignal,this,&startmenu::RegisterPressed,Qt::QueuedConnection);
@@ -46,20 +51,35 @@ startmenu::startmenu(void)
 //---------------public slots
 void startmenu::LoginPressed(void)
 {
+    start_user.clear();
+    emit SetLoginStatus("",""); //clear label
     emit GetLoginUsername();
     emit GetLoginPassword();
     //this QEvent loop to process pending signals events, used with signal slots pairs
     QEventLoop slots_loop;
     slots_loop.processEvents();
+    //Invaid username. contains spaces and its length is less than 8
+    if(start_user.GetUsername().size() < MIN_POLICY || start_user.GetUsername().find(" ") != std::string::npos)
+    {
+        emit SetLoginStatus("Invalid username","color: rgb(192, 28, 40);");
+        return;
+    }
     //login processing
-
-
-
-
-
+    {
+        // if incorrect credentials
+        // emit SetLoginStatus("Incorrect username or password","color: rgb(192, 28, 40);");
+        // return;
+    }
+    {
+        //if correct credentials
+        successfull_login = true;
+        return;
+    }
 }
 void startmenu::RegisterPressed(void)
 {
+    start_user.clear();
+    emit SetRegisterStatus("","");  //clear label
     //emit signals to get register information
     emit GetRegisterName();
     emit GetRegisterUsername();
@@ -72,14 +92,53 @@ void startmenu::RegisterPressed(void)
     QEventLoop slots_loop;
     slots_loop.processEvents();
     //register processing
-
-
-
-
+    if(start_user.GetEnteredPassword() != start_user.GetEnteredPassword2()) //entered password are not same
+    {
+        emit SetRegisterStatus("Entered passwords are not the same","color: rgb(192, 28, 40);");
+        return;
+    }
+    else if(start_user.GetEnteredPassword().size() < MIN_POLICY)   //short password
+    {
+        emit SetRegisterStatus("Make sure your password is greater than 8 characters","color: rgb(192, 28, 40);");
+        return;
+    }
+    else if(start_user.GetUsername().size() < MIN_POLICY)   //username is less than minimum length
+    {
+        emit SetRegisterStatus("Make sure that username is greater than 8 characters","color: rgb(192, 28, 40);");
+        return;
+    }
+    else if(start_user.GetUsername().find(" ") != std::string::npos)    //Invalid username, contains spaces
+    {
+        emit SetRegisterStatus("Invalid username, please remove any spaces","color: rgb(192, 28, 40);");
+        return;
+    }
+    else if(start_user.GetGender() != "Male" && start_user.GetGender() != "Female")
+    {
+        emit SetRegisterStatus("Please select your gender","color: rgb(192, 28, 40);");
+        return;
+    }
+    else if(start_user.GetEmail().find("@") == std::string::npos)    //invalid email address
+    {
+        emit SetRegisterStatus("Invalid email","color: rgb(192, 28, 40);");
+        return;
+    }
+    else
+    {
+        {
+            //if register is not successfull
+        }
+        {
+            //if register is successfull
+        }
+    }
 }
 void startmenu::ForgotPasswordPressed(void)
 {
     std::string email;
+    start_user.clear();
+    emit SetForgotPasswordStatus("","");    //clear label
+
+
     cout << "ServerConnection::GetIPAddress-> " << QThread::currentThread()->objectName().toStdString() << endl;
 
     //get email address entered
@@ -91,13 +150,31 @@ void startmenu::ForgotPasswordPressed(void)
     if(email.find("@") != std::string::npos) //if it contains @ to indicate for valid email address
     {
         emit SetForgotPasswordStatus("Email sent, please check your inbox","color: rgb(38, 162, 105);");
-        //forgot password processing
+        //forgot password processing, creating seperate thread
+
+        return;
     }
     else
     {
         emit SetForgotPasswordStatus("Invalid Email address","color: rgb(192, 28, 40);");
+        return;
     }
 }
+
+
+bool startmenu::StartMenu_Task(void)
+{
+    StartMenuShow();
+    //Idle task waiting for login status change
+    while(!successfull_login)
+    {
+        //sleep for 250ms to not consume the CPU
+        std::this_thread::sleep_for(250ms);
+    }
+    //StartMenuClose();
+    return true;    //Login successfull
+}
+
 
 
 //Show Close menu

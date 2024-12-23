@@ -5,6 +5,7 @@
 #include "startmenu_ui.h"
 #include "services.h"
 #include "user.h"
+#include "conf.h"
 
 class startmenu : public QObject
 {
@@ -14,12 +15,11 @@ private:
     user_services start_client;
     startmenu(void);
 
-
+    startmenu_ui& UI = startmenu_ui::MakeInstance();
+    bool successfull_login = false;
 
 
 public:
-    bool startmenu_running = false;
-    startmenu_ui& UI = startmenu_ui::MakeInstance();
 
 
     startmenu(const startmenu&) = delete; //delete copy constructor
@@ -37,6 +37,11 @@ public:
     {
         emit CloseWindow();
     }
+    bool StartMenu_Task(void);
+    // inline bool check_successfull_login(void)
+    // {
+    //     return successfull_login;
+    // }
 public slots:
     void LoginPressed(void);
     void RegisterPressed(void);

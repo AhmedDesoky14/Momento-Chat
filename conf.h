@@ -1,6 +1,8 @@
 #pragma once
 #include "platform.h"
 
+#define MIN_POLICY 8U   //minimum number of characters for usernames and passwords
+
 /*
  * Server connection status
  * 0: Server and other users are on same local network

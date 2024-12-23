@@ -14,7 +14,6 @@ private:
     startmenu& start_instance = startmenu::MakeInstance();
 
     app_main();
-    void StartPhase(void);
 public:
     app_main(const app_main&) = delete; //delete copy constructor
     app_main& operator=(const app_main&) = delete;  //delete copy assignment operator

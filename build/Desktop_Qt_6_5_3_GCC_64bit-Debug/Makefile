@@ -63,6 +63,7 @@ SOURCES       = ../../app_main.cpp \
 		moc_app_main.cpp \
 		moc_loadingscreen.cpp \
 		moc_loadingscreen_ui.cpp \
+		moc_mainmenu_ui.cpp \
 		moc_startmenu.cpp \
 		moc_startmenu_ui.cpp
 OBJECTS       = app_main.o \
@@ -77,6 +78,7 @@ OBJECTS       = app_main.o \
 		moc_app_main.o \
 		moc_loadingscreen.o \
 		moc_loadingscreen_ui.o \
+		moc_mainmenu_ui.o \
 		moc_startmenu.o \
 		moc_startmenu_ui.o
 DIST          = /opt/Qt/6.5.3/gcc_64/mkspecs/features/spec_pre.prf \
@@ -239,6 +241,8 @@ DIST          = /opt/Qt/6.5.3/gcc_64/mkspecs/features/spec_pre.prf \
 		../../loadingscreen.h \
 		../../loadingscreen_ui.h \
 		../../loadingscreen_window.h \
+		../../mainmenu_ui.h \
+		../../mainmenu_window.h \
 		../../platform.h \
 		../../requests.h \
 		../../serverconnection.h \
@@ -604,7 +608,7 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../../../../UserInterface/UI_Resources/icons.qrc ../../../../UserInterface/UI_Resources/images.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /opt/Qt/6.5.3/gcc_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../../app_main.h ../../conf.h ../../loadingscreen.h ../../loadingscreen_ui.h ../../loadingscreen_window.h ../../platform.h ../../requests.h ../../serverconnection.h ../../services.h ../../startmenu.h ../../startmenu_ui.h ../../startmenu_window.h ../../user.h ../../user_hostmachine.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../../app_main.h ../../conf.h ../../loadingscreen.h ../../loadingscreen_ui.h ../../loadingscreen_window.h ../../mainmenu_ui.h ../../mainmenu_window.h ../../platform.h ../../requests.h ../../serverconnection.h ../../services.h ../../startmenu.h ../../startmenu_ui.h ../../startmenu_window.h ../../user.h ../../user_hostmachine.h $(DISTDIR)/
 	$(COPY_FILE) --parents ../../app_main.cpp ../../loadingscreen.cpp ../../main.cpp ../../serverconnection.cpp ../../services.cpp ../../startmenu.cpp ../../startmenu_corr.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../../loadingscreen_window.ui ../../startmenu_window.ui $(DISTDIR)/
 
@@ -636,18 +640,25 @@ compiler_rcc_clean:
 qrc_icons.cpp: ../../../../UserInterface/UI_Resources/icons.qrc \
 		/opt/Qt/6.5.3/gcc_64/libexec/rcc \
 		../../../../UserInterface/UI_Resources/icons/8687830_ic_fluent_shield_lock_regular_icon.png \
+		../../../../UserInterface/UI_Resources/icons/8687632_ic_fluent_people_prohibited_regular_icon.png \
 		../../../../UserInterface/UI_Resources/icons/8687509_ic_fluent_key_multiple_regular_icon.png \
 		../../../../UserInterface/UI_Resources/icons/8687538_ic_fluent_person_regular_icon.png \
 		../../../../UserInterface/UI_Resources/icons/8687526_ic_fluent_mail_alert_regular_icon.png \
+		../../../../UserInterface/UI_Resources/icons/8687827_ic_fluent_shield_keyhole_regular_icon.png \
 		../../../../UserInterface/UI_Resources/icons/8687684_ic_fluent_person_add_regular_icon.png \
 		../../../../UserInterface/UI_Resources/icons/8687662_ic_fluent_people_toolbox_regular_icon.png \
 		../../../../UserInterface/UI_Resources/icons/male-and-female.png \
 		../../../../UserInterface/UI_Resources/icons/8687518_ic_fluent_lock_closed_regular_icon.png \
+		../../../../UserInterface/UI_Resources/icons/8687762_ic_fluent_settings_regular_icon.png \
+		../../../../UserInterface/UI_Resources/icons/8687670_ic_fluent_people_community_add_icon.png \
+		../../../../UserInterface/UI_Resources/icons/8687536_ic_fluent_people_settings_regular_icon.png \
+		../../../../UserInterface/UI_Resources/icons/8687586_ic_fluent_person_settings_regular_icon.png \
 		../../../../UserInterface/UI_Resources/icons/8687459_ic_fluent_mail_regular_icon.png \
 		../../../../UserInterface/UI_Resources/icons/8687666_ic_fluent_person_note_regular_icon.png \
 		../../../../UserInterface/UI_Resources/icons/8687056_ic_fluent_contact_card_group_icon.png \
 		../../../../UserInterface/UI_Resources/icons/8687572_ic_fluent_person_arrow_right_icon.png \
-		../../../../UserInterface/UI_Resources/icons/8687400_ic_fluent_lock_shield_regular_icon.png
+		../../../../UserInterface/UI_Resources/icons/8687400_ic_fluent_lock_shield_regular_icon.png \
+		../../../../UserInterface/UI_Resources/icons/8687534_ic_fluent_person_mail_regular_icon.png
 	/opt/Qt/6.5.3/gcc_64/libexec/rcc -name icons --no-zstd ../../../../UserInterface/UI_Resources/icons.qrc -o qrc_icons.cpp
 
 qrc_images.cpp: ../../../../UserInterface/UI_Resources/images.qrc \
@@ -661,9 +672,9 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /opt/Qt/6.5.3/gcc_64/mkspecs/features/data/dummy.cpp
 	g++ -pipe -g -std=gnu++1z -Wall -Wextra -fPIC -dM -E -o moc_predefs.h /opt/Qt/6.5.3/gcc_64/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_app_main.cpp moc_loadingscreen.cpp moc_loadingscreen_ui.cpp moc_startmenu.cpp moc_startmenu_ui.cpp
+compiler_moc_header_make_all: moc_app_main.cpp moc_loadingscreen.cpp moc_loadingscreen_ui.cpp moc_mainmenu_ui.cpp moc_startmenu.cpp moc_startmenu_ui.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_app_main.cpp moc_loadingscreen.cpp moc_loadingscreen_ui.cpp moc_startmenu.cpp moc_startmenu_ui.cpp
+	-$(DEL_FILE) moc_app_main.cpp moc_loadingscreen.cpp moc_loadingscreen_ui.cpp moc_mainmenu_ui.cpp moc_startmenu.cpp moc_startmenu_ui.cpp
 moc_app_main.cpp: ../../app_main.h \
 		/opt/Qt/6.5.3/gcc_64/include/QtCore/QObject \
 		/opt/Qt/6.5.3/gcc_64/include/QtCore/qobject.h \
@@ -1322,6 +1333,169 @@ moc_loadingscreen_ui.cpp: ../../loadingscreen_ui.h \
 		moc_predefs.h \
 		/opt/Qt/6.5.3/gcc_64/libexec/moc
 	/opt/Qt/6.5.3/gcc_64/libexec/moc $(DEFINES) --include /home/desoky/Fade_Project/C++_Projects/Fade_Iteration5/build/Desktop_Qt_6_5_3_GCC_64bit-Debug/moc_predefs.h -I/opt/Qt/6.5.3/gcc_64/mkspecs/linux-g++ -I/home/desoky/Fade_Project/C++_Projects/Fade_Iteration5 -I/opt/Qt/6.5.3/gcc_64/include -I/opt/Qt/6.5.3/gcc_64/include/QtWidgets -I/opt/Qt/6.5.3/gcc_64/include/QtGui -I/opt/Qt/6.5.3/gcc_64/include/QtCore -I. -I/usr/include/c++/11 -I/usr/include/x86_64-linux-gnu/c++/11 -I/usr/include/c++/11/backward -I/usr/lib/gcc/x86_64-linux-gnu/11/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../../loadingscreen_ui.h -o moc_loadingscreen_ui.cpp
+
+moc_mainmenu_ui.cpp: ../../mainmenu_ui.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/QMainWindow \
+		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/qmainwindow.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtGui/qtguiglobal.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qglobal.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qtversionchecks.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qconfig.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qtcore-config.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qtconfigmacros.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qtcoreexports.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qtpreprocessorsupport.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qtnoop.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qsystemdetection.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qprocessordetection.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qcompilerdetection.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qassert.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qtypes.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qtclasshelpermacros.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qtversion.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qtypeinfo.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qcontainerfwd.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qsysinfo.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qlogging.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qflags.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qcompare_impl.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qatomic.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qbasicatomic.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qatomic_cxx11.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qgenericatomic.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qconstructormacros.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qdarwinhelpers.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qexceptionhandling.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qforeach.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qtdeprecationmarkers.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qttypetraits.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qfunctionpointer.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qglobalstatic.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qmalloc.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qminmax.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qnumeric.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qoverload.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qswap.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qtenvironmentvariables.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qtresource.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qttranslation.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qversiontagging.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtGui/qtgui-config.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtGui/qtguiexports.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/qtwidgets-config.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/qtwidgetsexports.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/qwidget.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtGui/qwindowdefs.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qobjectdefs.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qnamespace.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qtmetamacros.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qobject.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qstring.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qchar.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qstringview.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qbytearray.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qrefcount.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qarraydata.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qpair.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qarraydatapointer.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qarraydataops.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qcontainertools_impl.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qxptype_traits.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qbytearrayalgorithms.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qbytearrayview.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qstringfwd.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/q20type_traits.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qstringliteral.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qstringalgorithms.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qanystringview.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qutf8stringview.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qstringtokenizer.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qstringbuilder.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qlist.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qhashfunctions.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qiterator.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qbytearraylist.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qstringlist.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qalgorithms.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qstringmatcher.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qcoreevent.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qscopedpointer.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qmetatype.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qcompare.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qdatastream.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qiodevicebase.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qfloat16.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qmath.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qiterable.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qmetacontainer.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qcontainerinfo.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qtaggedpointer.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qscopeguard.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qobject_impl.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qbindingstorage.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qmargins.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtGui/qaction.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtGui/qkeysequence.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtGui/qicon.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qsize.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtGui/qpixmap.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtGui/qpaintdevice.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qrect.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qpoint.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtGui/qcolor.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtGui/qrgb.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtGui/qrgba64.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qsharedpointer.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qshareddata.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtGui/qimage.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtGui/qpixelformat.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtGui/qtransform.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtGui/qpolygon.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtGui/qregion.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qline.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qvariant.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qdebug.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qtextstream.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qstringconverter_base.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qcontiguouscache.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qmap.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qshareddata_impl.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qset.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qhash.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qvarlengtharray.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/q20memory.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtGui/qpalette.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtGui/qbrush.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtGui/qfont.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtGui/qfontmetrics.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtGui/qfontinfo.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/qsizepolicy.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtGui/qcursor.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtGui/qbitmap.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtGui/qevent.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qiodevice.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qpointer.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qurl.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtGui/qeventpoint.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtGui/qvector2d.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtGui/qvectornd.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtGui/qpointingdevice.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtGui/qinputdevice.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtGui/qscreen.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/QList \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/QObject \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/QRect \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/QSize \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/QSizeF \
+		/opt/Qt/6.5.3/gcc_64/include/QtGui/QTransform \
+		/opt/Qt/6.5.3/gcc_64/include/QtCore/qnativeinterface.h \
+		/opt/Qt/6.5.3/gcc_64/include/QtWidgets/qtabwidget.h \
+		moc_predefs.h \
+		/opt/Qt/6.5.3/gcc_64/libexec/moc
+	/opt/Qt/6.5.3/gcc_64/libexec/moc $(DEFINES) --include /home/desoky/Fade_Project/C++_Projects/Fade_Iteration5/build/Desktop_Qt_6_5_3_GCC_64bit-Debug/moc_predefs.h -I/opt/Qt/6.5.3/gcc_64/mkspecs/linux-g++ -I/home/desoky/Fade_Project/C++_Projects/Fade_Iteration5 -I/opt/Qt/6.5.3/gcc_64/include -I/opt/Qt/6.5.3/gcc_64/include/QtWidgets -I/opt/Qt/6.5.3/gcc_64/include/QtGui -I/opt/Qt/6.5.3/gcc_64/include/QtCore -I. -I/usr/include/c++/11 -I/usr/include/x86_64-linux-gnu/c++/11 -I/usr/include/c++/11/backward -I/usr/lib/gcc/x86_64-linux-gnu/11/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../../mainmenu_ui.h -o moc_mainmenu_ui.cpp
 
 moc_startmenu.cpp: ../../startmenu.h \
 		/opt/Qt/6.5.3/gcc_64/include/QtCore/QObject \
@@ -2968,6 +3142,9 @@ moc_loadingscreen.o: moc_loadingscreen.cpp
 
 moc_loadingscreen_ui.o: moc_loadingscreen_ui.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_loadingscreen_ui.o moc_loadingscreen_ui.cpp
+
+moc_mainmenu_ui.o: moc_mainmenu_ui.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainmenu_ui.o moc_mainmenu_ui.cpp
 
 moc_startmenu.o: moc_startmenu.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_startmenu.o moc_startmenu.cpp

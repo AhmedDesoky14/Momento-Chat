@@ -1,0 +1,24 @@
+<RCC>
+  <qresource prefix="icons">
+    <file>icons/male-and-female.png</file>
+    <file>icons/8687830_ic_fluent_shield_lock_regular_icon.png</file>
+    <file>icons/8687827_ic_fluent_shield_keyhole_regular_icon.png</file>
+    <file>icons/8687762_ic_fluent_settings_regular_icon.png</file>
+    <file>icons/8687684_ic_fluent_person_add_regular_icon.png</file>
+    <file>icons/8687670_ic_fluent_people_community_add_icon.png</file>
+    <file>icons/8687666_ic_fluent_person_note_regular_icon.png</file>
+    <file>icons/8687662_ic_fluent_people_toolbox_regular_icon.png</file>
+    <file>icons/8687632_ic_fluent_people_prohibited_regular_icon.png</file>
+    <file>icons/8687586_ic_fluent_person_settings_regular_icon.png</file>
+    <file>icons/8687572_ic_fluent_person_arrow_right_icon.png</file>
+    <file>icons/8687538_ic_fluent_person_regular_icon.png</file>
+    <file>icons/8687536_ic_fluent_people_settings_regular_icon.png</file>
+    <file>icons/8687534_ic_fluent_person_mail_regular_icon.png</file>
+    <file>icons/8687526_ic_fluent_mail_alert_regular_icon.png</file>
+    <file>icons/8687518_ic_fluent_lock_closed_regular_icon.png</file>
+    <file>icons/8687509_ic_fluent_key_multiple_regular_icon.png</file>
+    <file>icons/8687459_ic_fluent_mail_regular_icon.png</file>
+    <file>icons/8687400_ic_fluent_lock_shield_regular_icon.png</file>
+    <file>icons/8687056_ic_fluent_contact_card_group_icon.png</file>
+  </qresource>
+</RCC>

@@ -23,6 +23,8 @@ HEADERS += \
     loadingscreen.h \
     loadingscreen_ui.h \
     loadingscreen_window.h \
+    mainmenu_ui.h \
+    mainmenu_window.h \
     platform.h \
     requests.h \
     serverconnection.h \
