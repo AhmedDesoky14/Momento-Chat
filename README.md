@@ -1,9 +1,9 @@
-# Fade-Chat  
+# Momento-Chat  
 
-Fade-Chat is a modern and secure peer-to-peer chat application designed for seamless communication with a focus on user privacy and versatility. 
+Momento-Chat is a modern and secure peer-to-peer chat application designed for seamless communication with a focus on user privacy and versatility. 
 With a user-friendly interface powered by Qt.  
 
-> **Note**: Fade-Chat is still under active development, and features are continuously being improved and expanded.  
+> **Note**: Momento-Chat is still under active development, and features are continuously being improved and expanded.  
 
 ---
 
@@ -24,7 +24,7 @@ With a user-friendly interface powered by Qt.
 - Images are displayed only for a certain duration before being deleted permanently, enhancing privacy.  
 
 ### 5. User-Friendly GUI  
-- Intuitive interface designed with Qt, providing a sleek and modern look.  
+- Intuitive interface designed with Qt Widgets, providing a sleek and modern look.  
 - Easy to navigate, even for non-technical users.  
 
 ### 6. Multi-User Support  
@@ -40,7 +40,7 @@ With a user-friendly interface powered by Qt.
 
 ## Current Status  
 
-Fade-Chat is a **work in progress**. Below are some of the key features currently being developed or refined:  
+Momento-Chat is a **work in progress**. Below are some of the key features currently being developed or refined:  
 - User authentication and profile management.  
 - VPN-based connectivity.  
 - Enhanced GUI elements and customization.  
