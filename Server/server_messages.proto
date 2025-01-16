@@ -1,0 +1,166 @@
+syntax = "proto3";
+
+message NewHostmachineRequest{
+    string ip_address = 1;
+    bytes certificate = 2;
+}
+message NewHostmachineResponse{
+    uint64 hostmachine_id = 1;
+    bytes signed_certificate = 2;
+}
+
+message RegisterRequest {
+    string username = 1;
+    bytes password_hash = 2; // Using bytes for password hash (vector of unsigned char)
+    string name = 3;
+    string email = 4;
+    string gender = 5;
+    string birth_date = 6;  // Assuming birth date is in a string format (e.g., DD-MM-YYYY)
+}
+message RegisterResponse{
+    string response = 1;
+}
+
+message LoginRequest{
+    string username = 1;
+    bytes password_hash = 2;
+}
+message LoginResponse{
+    string name = 1;
+    string status = 2;
+    string visualization_mode = 3;
+    bool ephemeral_chat = 4;
+    int32 messages_timeout = 5;
+    uint64 sent_messages = 6;
+    uint64 received_messages = 7;
+    string response = 8;
+}
+
+message ForgotAccountRequest{
+    string email = 1;
+}
+message ForgotAccountResponse{
+    string response = 1;
+}
+
+message CheckUserStatusRequest{
+    string username = 1;
+}
+message CheckUserStatusResponse{
+    string status = 1;
+}
+
+message ConnectionRequest{
+    string username = 1;
+}
+message ConnectionResponse{
+    string contact_ip_address = 1;
+}
+
+message ChangePasswordRequest{
+    string username = 1;
+    bytes old_password_hash = 2;
+    bytes new_password_hash = 3;
+}
+message ChangePasswordResponse{
+    string response = 1;
+}
+
+message UpdateRequest{
+    string username = 1;
+    string status = 2;
+    string visualization_mode = 3;
+    bool ephemeral_chat = 4;
+    int32 messages_timeout = 5;
+    uint64 sent_messages = 6;
+    uint64 received_messages = 7;
+    string response = 8;
+}
+message UpdateResponse{
+    string response = 1;
+}
+
+message BlockRequest{
+    string username = 1;
+    string contact = 2;
+}
+message BlockResponse{
+    string response = 1;
+}
+
+message UnBlockRequest{
+    string username = 1;
+    string contact = 2;
+}
+message UnBlockResponse{
+    string response = 1;
+}
+
+message BlockListRequest{
+    string username = 1;
+}
+message BlockListResponse{
+    repeated string list = 1;   //List[string]
+}
+
+enum MessageType{
+    NewHostmachine = 0;
+    RegisterType = 1;
+    LoginType = 2;
+    ForgotAccountType = 3;
+    CheckUserStatusType = 4;
+    ConnectionType = 5;
+    ChangePasswordType = 6;
+    UpdateType = 7;
+    BlockType = 8;
+    UnBlockType = 9;
+    GetBlockListType = 10;
+}
+
+message UserRequest{
+    string ip_address = 1;
+    string os = 2;
+    uint64 machine_id = 3;
+    oneof MesssageContent{
+        RegisterRequest register = 4;
+        LoginRequest login = 5;
+        ForgotAccountRequest forgot_account = 6;
+        CheckUserStatusRequest check_status = 7;
+        ConnectionRequest connect = 8;
+        ChangePasswordRequest change_password = 9;
+        UpdateRequest Update = 10;
+        BlockRequest block = 11;
+        UnBlockRequest unblock = 12;
+        BlockListRequest block_list = 13;
+    }
+}
+message UserResponse{
+    oneof MesssageContent{
+        RegisterResponse register = 1;
+        LoginResponse login = 2;
+        ForgotAccountResponse forgot_account = 3;
+        CheckUserStatusResponse check_status = 4;
+        ConnectionResponse connect = 5;
+        ChangePasswordResponse change_password = 6;
+        UpdateResponse Update = 7;
+        BlockResponse block = 8;
+        UnBlockResponse unblock = 9;
+        BlockListResponse block_list = 10; 
+    }
+}
+
+message RequestMessage{
+    MessageType type = 1;
+    oneof Message{
+        NewHostmachineRequest NewHostmachine = 2;
+        UserRequest User = 3;
+    }
+}
+
+message ResponseMessage{
+    MessageType type = 1;
+    oneof Message{
+        NewHostmachineResponse NewHostmachine = 2;
+        UserResponse User = 3;
+    }
+}

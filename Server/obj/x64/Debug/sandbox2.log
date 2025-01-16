@@ -1,0 +1,72 @@
+﻿  Validating sources
+  Copying sources remotely to '192.168.1.15'
+  Validating architecture
+  Validating architecture
+  Starting remote build
+  Compiling sources:
+  certificates.cpp
+E:\Fade_Project\sandbox2\sandbox2\keys.h(31,76): warning : conversion from ‘std::vector<unsigned char>::size_type’ {aka ‘long unsigned int’} to ‘int’ may change value [-Wconversion]
+E:\Fade_Project\sandbox2\sandbox2\keys.h(31,76): warning :    31 |                 BIO* basicIO = BIO_new_mem_buf(keydata.data(), keydata.size()); //create basic IO and store key inside it
+E:\Fade_Project\sandbox2\sandbox2\keys.h(31,76): warning :       |                                                                ~~~~~~~~~~~~^~
+E:\Fade_Project\sandbox2\sandbox2\keys.h(55,86): warning : conversion from ‘std::vector<unsigned char>::size_type’ {aka ‘long unsigned int’} to ‘int’ may change value [-Wconversion]
+E:\Fade_Project\sandbox2\sandbox2\keys.h(55,86): warning :    55 |                 BIO* basicIO = BIO_new_mem_buf(keypair_vect.data(), keypair_vect.size());       //create basic IO and store key inside it
+E:\Fade_Project\sandbox2\sandbox2\keys.h(55,86): warning :       |                                                                     ~~~~~~~~~~~~~~~~~^~
+E:\Fade_Project\sandbox2\sandbox2\certificates.h(175,80): warning : conversion from ‘std::vector<unsigned char>::size_type’ {aka ‘long unsigned int’} to ‘int’ may change value [-Wconversion]
+E:\Fade_Project\sandbox2\sandbox2\certificates.h(175,80): warning :   175 |                 BIO* basicIO = BIO_new_mem_buf(cert_vect.data(), cert_vect.size());
+E:\Fade_Project\sandbox2\sandbox2\certificates.h(175,80): warning :       |                                                                  ~~~~~~~~~~~~~~^~
+E:\Fade_Project\sandbox2\sandbox2\keys.h(11,13): warning : ‘void InitOpenSSL()’ defined but not used [-Wunused-function]
+E:\Fade_Project\sandbox2\sandbox2\keys.h(11,13): warning :    11 | static void InitOpenSSL(void)
+E:\Fade_Project\sandbox2\sandbox2\keys.h(11,13): warning :       |             ^~~~~~~~~~~
+  client.cpp
+  database.cpp
+E:\Fade_Project\sandbox2\sandbox2\user.h(46,27): warning : ‘user_base::username’ will be initialized after [-Wreorder]
+E:\Fade_Project\sandbox2\sandbox2\user.h(45,27): warning : ‘const hostmachine user_base::host’ [-Wreorder]
+E:\Fade_Project\sandbox2\sandbox2\user.h(45,27): warning :    45 |         const hostmachine host;
+E:\Fade_Project\sandbox2\sandbox2\user.h(45,27): warning :       |                           ^~~~
+E:\Fade_Project\sandbox2\sandbox2\user.h(48,9): warning : when initialized here [-Wreorder]
+E:\Fade_Project\sandbox2\sandbox2\database.cpp(30,52): warning : conversion from ‘size_t’ {aka ‘long unsigned int’} to ‘int’ may change value [-Wconversion]
+E:\Fade_Project\sandbox2\sandbox2\database.cpp(214,46): warning : conversion from ‘long unsigned int’ to ‘int’ may change value [-Wconversion]
+E:\Fade_Project\sandbox2\sandbox2\database.cpp(214,46): warning :   214 |         sqlite3_bind_int(newmachine_stmt, 1, next_id);  //registered id
+E:\Fade_Project\sandbox2\sandbox2\database.cpp(214,46): warning :       |                                              ^~~~~~~
+E:\Fade_Project\sandbox2\sandbox2\database.cpp(247,101): warning : conversion from ‘std::vector<unsigned char>::size_type’ {aka ‘long unsigned int’} to ‘int’ may change value [-Wconversion]
+E:\Fade_Project\sandbox2\sandbox2\database.cpp(247,101): warning :   247 |         sqlite3_bind_blob(newentry_stmt, 4, usr.getPasswordHash().data(), usr.getPasswordHash().size(), SQLITE_TRANSIENT);
+E:\Fade_Project\sandbox2\sandbox2\database.cpp(247,101): warning :       |                                                                           ~~~~~~~~~~~~~~~~~~~~~~~~~~^~
+E:\Fade_Project\sandbox2\sandbox2\database.cpp(257,64): warning : conversion from ‘long unsigned int’ to ‘int’ may change value [-Wconversion]
+E:\Fade_Project\sandbox2\sandbox2\database.cpp(257,64): warning :   257 |         sqlite3_bind_int(newentry_stmt, 14, usr.getSentMessages());
+E:\Fade_Project\sandbox2\sandbox2\database.cpp(257,64): warning :       |                                             ~~~~~~~~~~~~~~~~~~~^~
+E:\Fade_Project\sandbox2\sandbox2\database.cpp(258,68): warning : conversion from ‘long unsigned int’ to ‘int’ may change value [-Wconversion]
+E:\Fade_Project\sandbox2\sandbox2\database.cpp(258,68): warning :   258 |         sqlite3_bind_int(newentry_stmt, 15, usr.getReceivedMessages());
+E:\Fade_Project\sandbox2\sandbox2\database.cpp(258,68): warning :       |                                             ~~~~~~~~~~~~~~~~~~~~~~~^~
+E:\Fade_Project\sandbox2\sandbox2\database.cpp(259,65): warning : conversion from ‘long unsigned int’ to ‘int’ may change value [-Wconversion]
+E:\Fade_Project\sandbox2\sandbox2\database.cpp(259,65): warning :   259 |         sqlite3_bind_int(newentry_stmt, 16, usr.getHostMachineID());
+E:\Fade_Project\sandbox2\sandbox2\database.cpp(259,65): warning :       |                                             ~~~~~~~~~~~~~~~~~~~~^~
+E:\Fade_Project\sandbox2\sandbox2\database.cpp(351,69): warning : conversion from ‘std::vector<unsigned char>::size_type’ {aka ‘long unsigned int’} to ‘int’ may change value [-Wconversion]
+E:\Fade_Project\sandbox2\sandbox2\database.cpp(351,69): warning :   351 |         sqlite3_bind_blob(updatehash_stmt, 1, hash.data(), hash.size(), SQLITE_TRANSIENT);
+E:\Fade_Project\sandbox2\sandbox2\database.cpp(351,69): warning :       |                                                            ~~~~~~~~~^~
+  keys.cpp
+E:\Fade_Project\sandbox2\sandbox2\keys.h(31,76): warning : conversion from ‘std::vector<unsigned char>::size_type’ {aka ‘long unsigned int’} to ‘int’ may change value [-Wconversion]
+E:\Fade_Project\sandbox2\sandbox2\keys.h(31,76): warning :    31 |                 BIO* basicIO = BIO_new_mem_buf(keydata.data(), keydata.size()); //create basic IO and store key inside it
+E:\Fade_Project\sandbox2\sandbox2\keys.h(31,76): warning :       |                                                                ~~~~~~~~~~~~^~
+E:\Fade_Project\sandbox2\sandbox2\keys.h(55,86): warning : conversion from ‘std::vector<unsigned char>::size_type’ {aka ‘long unsigned int’} to ‘int’ may change value [-Wconversion]
+E:\Fade_Project\sandbox2\sandbox2\keys.h(55,86): warning :    55 |                 BIO* basicIO = BIO_new_mem_buf(keypair_vect.data(), keypair_vect.size());       //create basic IO and store key inside it
+E:\Fade_Project\sandbox2\sandbox2\keys.h(55,86): warning :       |                                                                     ~~~~~~~~~~~~~~~~~^~
+E:\Fade_Project\sandbox2\sandbox2\keys.h(11,13): warning : ‘void InitOpenSSL()’ defined but not used [-Wunused-function]
+E:\Fade_Project\sandbox2\sandbox2\keys.h(11,13): warning :    11 | static void InitOpenSSL(void)
+E:\Fade_Project\sandbox2\sandbox2\keys.h(11,13): warning :       |             ^~~~~~~~~~~
+  main.cpp
+E:\Fade_Project\sandbox2\sandbox2\keys.h(31,76): warning : conversion from ‘std::vector<unsigned char>::size_type’ {aka ‘long unsigned int’} to ‘int’ may change value [-Wconversion]
+E:\Fade_Project\sandbox2\sandbox2\keys.h(31,76): warning :    31 |                 BIO* basicIO = BIO_new_mem_buf(keydata.data(), keydata.size()); //create basic IO and store key inside it
+E:\Fade_Project\sandbox2\sandbox2\keys.h(31,76): warning :       |                                                                ~~~~~~~~~~~~^~
+E:\Fade_Project\sandbox2\sandbox2\keys.h(55,86): warning : conversion from ‘std::vector<unsigned char>::size_type’ {aka ‘long unsigned int’} to ‘int’ may change value [-Wconversion]
+E:\Fade_Project\sandbox2\sandbox2\keys.h(55,86): warning :    55 |                 BIO* basicIO = BIO_new_mem_buf(keypair_vect.data(), keypair_vect.size());       //create basic IO and store key inside it
+E:\Fade_Project\sandbox2\sandbox2\keys.h(55,86): warning :       |                                                                     ~~~~~~~~~~~~~~~~~^~
+E:\Fade_Project\sandbox2\sandbox2\certificates.h(175,80): warning : conversion from ‘std::vector<unsigned char>::size_type’ {aka ‘long unsigned int’} to ‘int’ may change value [-Wconversion]
+E:\Fade_Project\sandbox2\sandbox2\certificates.h(175,80): warning :   175 |                 BIO* basicIO = BIO_new_mem_buf(cert_vect.data(), cert_vect.size());
+E:\Fade_Project\sandbox2\sandbox2\certificates.h(175,80): warning :       |                                                                  ~~~~~~~~~~~~~~^~
+  server_messages.cpp
+  server_messages.pb.cc
+E:\Fade_Project\sandbox2\sandbox2\server_messages.pb.cc(2433,78): warning : conversion from ‘google::protobuf::uint64’ {aka ‘long unsigned int’} to ‘google::protobuf::int32’ {aka ‘int’} may change value [-Wconversion]
+E:\Fade_Project\sandbox2\sandbox2\server_messages.pb.cc(4599,78): warning : conversion from ‘google::protobuf::uint64’ {aka ‘long unsigned int’} to ‘google::protobuf::int32’ {aka ‘int’} may change value [-Wconversion]
+  utils.cpp
+  Linking objects
+  sandbox2.vcxproj -> E:\Fade_Project\sandbox2\sandbox2\bin\x64\Debug\sandbox2.out
